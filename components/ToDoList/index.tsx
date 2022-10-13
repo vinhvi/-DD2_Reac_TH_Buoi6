@@ -8,7 +8,17 @@ export type ToDoProps = {
 
 const ToDoListItem = (props: ToDoProps) => {
   const { todo } = props;
+  const [todos, setTodos] = useState([]);
+  const handleDeleteTodo = (id) => {
+    setTodos(
+      todos.filter((todo) => {
+        if (todo.key !== id) return true;
+      })
+    );
+  };
+ 
   return (
+
     <View
       style={{
         marginTop: 10,
@@ -21,12 +31,13 @@ const ToDoListItem = (props: ToDoProps) => {
     >
       <View style={{ flexDirection: "row", }}>
         <Text style={{ borderColor: "black", borderWidth: 1,fontWeight:"bold",marginRight:30,fontSize:20, }}>{todo.id}</Text>
-        <Text style={{fontSize:20,}}>{todo.todo}</Text>
+        <Text style={{fontSize:20,}}>{todo.name}</Text>
       </View>
-      <TouchableHighlight onPress={todo.delete}>
+      <TouchableHighlight onPress={handleDeleteTodo}>
         <Text style={{ borderColor: "black", borderWidth: 1,fontSize:20, }}>Remove</Text>
       </TouchableHighlight>
     </View>
+    
   );
 };
 

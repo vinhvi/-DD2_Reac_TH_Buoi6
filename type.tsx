@@ -1,6 +1,5 @@
 
-
 export type ToDo = {
   id: String,
-  todo: String,
+  name: String,
 };

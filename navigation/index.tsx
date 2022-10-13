@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { View, Text, TextInput, TouchableHighlight } from "react-native";
+import { View, Text, TextInput, TouchableHighlight, FlatList } from "react-native";
 import ToDoList from "../screen/ToDoListScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -17,7 +17,7 @@ function StackNavigator() {
     if (value.length > 0) {
       setTodos([...todo]);
       axios
-        .post("https://6346c3c59eb7f8c0f8850411.mockapi.io/api/todo/todo", {
+        .post("https://6346c3c59eb7f8c0f8850411.mockapi.io/api/todo/Todo", {
           name: value,
         })
         .catch(function (error) {
@@ -33,7 +33,7 @@ function StackNavigator() {
         name="ToDoList"
         component={ToDoList}
         options={({ route }) => ({
-          title: "",
+          title: "Todo",
           header: () => (
             <View
               style={{
@@ -69,6 +69,7 @@ function StackNavigator() {
             </View>
           ),
         })}
+      
       />
     </Stack.Navigator>
   );
